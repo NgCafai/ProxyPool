@@ -1,5 +1,14 @@
 # ProxyPool
 
+## Function
+Automatically get proxies from certain servers, store them using Redis, and test whether it is useful; Finally wrap it as a web service using Flask
+
+## Specification
+- forked from [Python3WebSpider/ProxyPool](https://github.com/Python3WebSpider/ProxyPool)
+- fix some bugs according to the new version of redis-py(3.0)
+- use paid proxy (http://www.xdaili.cn/buyproxy)
+- add some comments
+
 ## 安装
 
 ### 安装Python

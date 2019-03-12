@@ -23,10 +23,12 @@ class Crawler(object, metaclass=ProxyMetaclass):
             print('成功获取到代理', proxy)
             proxies.append(proxy)
         return proxies
-       
+
+    # free proxies
+    '''
     def crawl_daili66(self, page_count=4):
         """
-        获取代理66
+        获取免费代理66
         :param page_count: 页码
         :return: 代理
         """
@@ -44,6 +46,10 @@ class Crawler(object, metaclass=ProxyMetaclass):
                     yield ':'.join([ip, port])
 
     def crawl_ip3366(self):
+        """
+        get free proxies
+        :return: 
+        """
         for page in range(1, 4):
             start_url = 'http://www.ip3366.net/free/?stype=1&page={}'.format(page)
             html = get_page(start_url)
@@ -55,6 +61,10 @@ class Crawler(object, metaclass=ProxyMetaclass):
                 yield result.replace(' ', '')
     
     def crawl_kuaidaili(self):
+        """
+        get free proxies
+        :return: 
+        """
         for i in range(1, 4):
             start_url = 'http://www.kuaidaili.com/free/inha/{}/'.format(i)
             html = get_page(start_url)
@@ -68,6 +78,10 @@ class Crawler(object, metaclass=ProxyMetaclass):
                     yield address_port.replace(' ','')
 
     def crawl_xicidaili(self):
+        """
+        get free proxies
+        :return: 
+        """
         for i in range(1, 3):
             start_url = 'http://www.xicidaili.com/nn/{}'.format(i)
             headers = {
@@ -91,6 +105,10 @@ class Crawler(object, metaclass=ProxyMetaclass):
                         yield address_port.replace(' ','')
     
     def crawl_ip3366(self):
+        """
+        get free proxies
+        :return: 
+        """
         for i in range(1, 4):
             start_url = 'http://www.ip3366.net/?stype=1&page={}'.format(i)
             html = get_page(start_url)
@@ -107,6 +125,10 @@ class Crawler(object, metaclass=ProxyMetaclass):
                         yield address_port.replace(' ','')
     
     def crawl_iphai(self):
+        """
+        get free proxies
+        :return: 
+        """
         start_url = 'http://www.iphai.com/'
         html = get_page(start_url)
         if html:
@@ -122,6 +144,10 @@ class Crawler(object, metaclass=ProxyMetaclass):
                     yield address_port.replace(' ','')
 
     def crawl_data5u(self):
+        """
+        get free proxies
+        :return: 
+        """
         start_url = 'http://www.data5u.com/free/gngn/index.shtml'
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -142,6 +168,23 @@ class Crawler(object, metaclass=ProxyMetaclass):
             for address, port in re_ip_address:
                 result = address + ':' + port
                 yield result.replace(' ', '')
+    '''
+
+    # paid proxies
+    def crawl_xun_proxy(self):
+        """
+        get proxy from Xun proxy
+        :return: proxy
+        """
+        url = 'http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=5e1599b9057a452b95566ded814e5176' \
+              '&orderno=YZ20193120488SDcJg4&returnType=2&count=20'
+        html = get_page(url)
+        if html:
+            result = json.loads(html)
+            proxies = result.get('RESULT')
+            for proxy in proxies:
+                yield proxy.get('ip') + ':' + proxy.get('port')
 
 
-            
+
+
